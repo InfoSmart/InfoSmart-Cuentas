@@ -1,0 +1,31 @@
+/* TEAM */
+
+	Desarrollador: Iván Bravo Bravo
+	Contact: webmaster@infosmart.mx
+	Twitter: @Kolesias123
+	Facebook: iban.bravo
+	From: Ciudad Lázaro Cárdenas, Michoacán, México.
+
+/* THANKS */
+
+
+/* SITE */
+
+	Language: ES
+	Doctype: HTML5
+	Standards: CSS3, JavaScript
+
+	/* DEVELOPMENT */
+	BeatRock: http://beatrock.infosmart.mx/
+	Sublime Text 2: http://www.sublimetext.com/2
+
+	/* SOFTWARE */
+	PHP: http://php.net/
+	MySQL: http://mysql.com/
+
+	/* DEBUG & ACTION */
+	Google Chrome: http://www.google.com/chrome
+	Google Chrome Frame: https://developers.google.com/chrome/chrome-frame/
+
+	/* UTILS */
+	
