@@ -1,0 +1,240 @@
+<script>
+ var RecaptchaOptions = {
+    theme : 'custom',
+    custom_theme_widget: 'recaptcha_widget'
+ };
+ </script>
+
+<div class="content">
+	<h5>Crea tu cuenta</h5>
+
+	<p>
+		Con tu cuenta podrás acceder a todas nuestras aplicaciones de forma sencilla y segura.
+	</p>
+
+	<div class="box-error ic">
+		Al parecer han ocurrido los siguientes problemas:
+
+		<ul>
+			{$errors}
+		</ul>
+	</div>
+
+	<form action="{PATH}/actions/register" method="POST" class="register-form">
+		<input type="hidden" name="key" id="key" value="" />
+
+		<div class="col3">
+			<p>
+				<label>Nombre</label>
+				<input type="text" name="firstname" class="share" value="{$data['firstname']}" placeholder="Nombre" required x-webkit-speech speech />
+				<input type="text" name="lastname" class="share" value="{$data['lastname']}" placeholder="Apellidos" required x-webkit-speech speech />
+
+				<span class="herror" data-for="name"></label>
+			</p>
+
+			<p>
+				<label>Contraseña</label>
+				<input type="password" name="password" value="{$data['password']}" required data-tooltip="Tu contraseña debe ser única con al menos 8 caracteres. ¡Recuerda que esta es tu cuenta para todos los servicios de InfoSmart!" data-tooltip-align="bottom" />
+				<span class="herror" data-for="password"></label>
+			</p>
+
+			<p>
+				<label>Fecha de nacimiento</label>
+
+				<input type="text" min="1" max="31" class="share-3" name="bday" value="{$data['bday']}" placeholder="Día" required />
+
+				<select name="bmonth" id="bmonth" required class="share-3" role="menu">
+					<option value="">Mes</option>
+
+					@foreach ( $months as $key => $month )
+
+						@if ( $data['bmonth'] == $key )
+							{{ $selected = 'selected="selected"' }}
+						@endif
+
+						<option value="{$key}" {selected}>{$month}</option>
+					@endforeach
+				</select>
+
+				<input type="text" class="share-3" name="byear" value="{$data['byear']}" placeholder="Año" required />
+
+				<span class="herror" data-for="birthday"></label>
+			</p>
+
+			<p>
+				<label>Sexo</label>
+
+				<select name="gender" id="gender" required role="menu">
+					<option value="f">Mujer</option>
+
+					<option value="m"
+					@if ( $data['gender'] == 'm' )
+						selected="selected"
+					@endif >Hombre</option>
+				</select>
+			</p>
+
+			<div class="p">
+				<label>Código de seguridad</label>
+				 <input type="hidden" name="recaptcha_response_field" value="manual_challenge">
+
+				<div id="recaptcha_widget" style="display:none">
+					<div id="recaptcha_image"></div>
+					<div class="recaptcha_only_if_incorrect_sol" style="color:red">Incorrect please try again</div>
+
+					<input type="text" id="recaptcha_response_field" name="recaptcha_response_field" data-tooltip="Este código nos asegura que no eres un robot, alien o GLaDOS." data-tooltip-align="bottom" data-tooltip-bottom="70" spellcheck="false" />
+
+					<div class="min-links">
+						<a href="javascript:Recaptcha.reload()">Obtener otro código</a>
+						<a href="javascript:Recaptcha.switch_type('audio')" class="recaptcha_only_if_image">Obtener un código sonoro</a>
+						<a href="javascript:Recaptcha.switch_type('image')" class="recaptcha_only_if_audio">Obtener un código visual</a>
+						<a href="javascript:Recaptcha.showhelp()">Ayuda</a>
+					</div>
+				 </div>
+
+				{Captcha::Show('6LdZHOESAAAAACJtYFZbTd2Di871CSvVE6fOzTO_')}
+			</div>
+
+			<p data-margin="30px 0">
+				<button class="ibtn iblue ibig">Registrarse</button>
+				<a href="{PATH}" class="ibtn ibig">Volver</a>
+			</p>
+		</div>
+
+		<div class="col4">
+			<p>
+				<label>Nombre de usuario</label>
+				<input type="text" name="username" value="{$data['username']}" required data-tooltip="¿Como te llamas en la web?" />
+				<span class="herror" data-for="username"></label>
+			</p>
+
+			<p>
+				<label>Confirma tu contraseña</label>
+				<input type="password" name="confirm_password" value="" required />
+				<span class="herror" data-for="confirm_password"></label>
+			</p>
+
+			<p>
+				<label>Correo electrónico</label>
+				<input type="email" name="email" value="{$data['email']}" required />
+				<span class="herror" data-for="email"></label>
+			</p>
+
+			<p>
+				<label>País</label>
+				<select name="country" id="country" required role="menu">
+					<option value="">Selecciona...</option>
+
+					@while ( $row = Assoc($countrys) )
+						<option value="{$row['code2']}"
+						@if ( COUNTRY == $row['code2'] || $data['country'] == $row['code2'] )
+						selected="selected"
+						@endif >{$row['name']}</option>
+					@endwhile
+				</select>
+				<span class="herror" data-for="country"></label>
+			</p>
+		</div>
+	</form>
+</div>
+
+
+
+
+
+
+<audio id="ee_glados1" src="%RESOURCES%/easter_eggs/glados/fgbrvtrap02.ogg"></audio>
+<audio id="ee_glados2" src="%RESOURCES%/easter_eggs/glados/fgbrvtrap03.ogg"></audio>
+<audio id="ee_glados3" src="%RESOURCES%/easter_eggs/glados/fgbrvtrap05.ogg"></audio>
+
+<audio id="ee_glados4" src="%RESOURCES%/easter_eggs/glados/gladosbattle_pre09.wav"></audio>
+<audio id="ee_glados5" src="%RESOURCES%/easter_eggs/glados/fgbwheatleyentrance10.wav"></audio>
+
+<script>
+var AudioFileNow 		= 0;
+var GladosDiscovered 	= 0;
+
+PrepareGlados();
+
+function PrepareGlados()
+{
+	if ( !window.jQuery )
+	{
+		setTimeout(PrepareGlados, 1000);
+		return;
+	}
+
+	$('#recaptcha_response_field').on('keydown', function()
+	{
+		var Value = $(this).val();
+		Value = strtolower(Value);
+
+		if ( Value != 'glados' )
+			return;
+
+		if ( $(this).attr('disabled') != undefined )
+			return;
+
+		$(this).attr('disabled', '');
+
+		if ( GladosDiscovered == 0 )
+		{
+			console.log('[GlaDOS] ¡Ha caido!');
+			AudioFileNow = 1;
+		}
+
+		if ( GladosDiscovered == 1 )
+		{
+			console.log('[GlaDOS] Te odio, encerio.');
+			AudioFileNow = 4;
+		}
+
+		if ( GladosDiscovered == 2 )
+		{
+			console.log('[GlaDOS] Y no vuelvas...');
+			AudioFileNow = 5;
+		}
+
+		StartGlados();
+	});
+}
+
+function StartGlados()
+{
+	var Glados = document.getElementById('ee_glados' + AudioFileNow);
+
+	if ( Glados == undefined || Glados == null )
+		return;
+
+	Glados.addEventListener('ended', function()
+	{
+		if ( AudioFileNow == 3 )
+		{
+			GladosDiscovered = 1;
+			$('#recaptcha_response_field').removeAttr('disabled');
+			return;
+		}
+
+		if ( AudioFileNow == 4 )
+		{
+			GladosDiscovered = 2;
+			$('#recaptcha_response_field').removeAttr('disabled');
+			return;
+		}
+
+		if ( AudioFileNow == 5 )
+		{
+			$('#recaptcha_response_field').removeAttr('disabled');
+			$('#recaptcha_response_field').off('keydown');
+
+			return;
+		}
+
+		++AudioFileNow;
+		StartGlados();
+
+	}, false);
+
+	Glados.play();
+}
+</script>

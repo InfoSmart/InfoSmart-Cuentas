@@ -1,0 +1,27 @@
+<div class="panel fixed">
+	<section class="me box">
+		<figure>
+			<img src="{PATH}/photo/default/small" />
+		</figure>
+
+		<div class="info">
+			<a href="{PATH}" target="_blank" class="register-now">
+				Iniciar sesión
+			</a>
+		</div>
+	</section>
+
+	@if ( is_array($nav) )
+		<section class="box">
+			<nav>
+				@foreach ( $nav as $title => $url )
+
+					{{ $title = str_ireplace('[new]', '<strong class="new">¡NUEVO!</strong>', $title) }}
+					{{ $title = preg_replace('/\[(.+?)\]/', '<span class="icon">$1</span>', $title) }}
+
+					<a href="{$url}">{$title}</a>
+				@endforeach
+			</nav>
+		</section>
+	@endif
+</div>

@@ -1,0 +1,43 @@
+<div class="content">
+	<div class="wrap">
+		<h4>¿Confías en este dispositivo?</h4>
+
+		<p>
+			Hemos detectado que este dispositivo <i>(%me_lasthost%)</i> no es el mismo con el que te conectaste la última vez a %SITE_NAME%. Si te encuentras usando un dispositivo público o temporal te recomendamos que establezcas un tiempo limite para tu sesión:
+		</p>
+
+		<form action="%PATH%/actions/session.duration.php" method="POST" class="st1-form">
+			<input type="hidden" name="return" value="{$return}" />
+
+			<p>
+				<label>Quiero que mi sesión dure:</label>
+				<input type="number" min="5" max="60" value="30" name="minutes" /> minutos
+				<a data-tooltip="Para proteger tu cuenta de un posible acceso no autorizado la misma cerrara sesión automáticamente después del determinado número de minutos que le indiques. Una forma de proteger tus datos si olvidas cerrar sesión al terminar de usar este dispositivo." data-tooltip-align="bottom">¿Que es esto?</a>
+			</p>
+
+			<p>
+				<button class="ibtn">Establecer limite</button>
+				<a href="%PATH%" class="ibtn ired">Ignorar y continuar</a>
+			</p>
+		</form>
+	</div>
+</div>
+
+<style>
+.st1-form
+{
+	margin-top: 50px;
+}
+
+.st1-form input
+{
+	width: 70px !important;
+}
+
+.st1-form a[data-tooltip]
+{
+	cursor: help;
+	font-size: 11px;
+	margin-left: 10px;
+}
+</style>

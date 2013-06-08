@@ -1,0 +1,27 @@
+<div class="profile_bar">
+	<div class="me">
+		<figure>
+			<img src="%PATH%/photo/%me_username%/small" alt="%me_name%" id="me_photo" title="Cambiar foto" />
+		</figure>
+
+		<span class="name" data-original="%me_name%">
+			%me_name%
+		</span>
+	</div>
+
+	<nav>
+		<? if($page['id'] !== 'required') { ?>
+		<a href="%PATH%">Información</a>
+		<a href="%PATH%/security">Seguridad</a>
+		<a href="%PATH%/profile">Perfil</a>
+		<a href="%PATH%/apps">Aplicaciones</a>
+		<? } ?>
+
+		<a href="%PATH%/actions/logout">Cerrar sesión</a>
+	</nav>
+</div>
+
+<div class="msg_bar">
+</div>
+
+<input type="file" id="upload_photo" accept="image/png,image/jpeg,image/gif" />

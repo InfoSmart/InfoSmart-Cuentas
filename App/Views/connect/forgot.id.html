@@ -1,0 +1,70 @@
+<div class="content">
+	<h4>Descubramos cual es su cuenta.</h4>
+
+	@if ( $G['recover'] == 'remember_username' )
+
+		<p>
+			A continuación escriba lo que recuerde de su <strong>nombre de usuario o correo electrónico primario</strong>, conforme escriba aparecerán los usuarios que coincidan con su búsqueda.
+		</p>
+
+		<div class="form" style="margin-top: 60px">
+			<input type="text" id="search" data-type="id" x-webkit-speech speech placeholder="Escriba lo que recuerde." />
+		</div>
+
+		<section class="results">
+
+		</section>
+
+	@endif
+
+	@if ( $G['recover'] == 'remember_alt_email' )
+
+		<p>
+			A continuación escriba uno de los correos alternativos de su cuenta:
+		</p>
+
+		<div class="form" style="margin-top: 60px">
+			<input type="email" id="search" data-type="alt_email" x-webkit-speech speech placeholder="Escriba uno de sus correos alternativos." />
+
+			<p>
+				<a id="go_search" class="ibtn">Ya lo he escrito</a>
+			</p>
+		</div>
+
+		<section class="results">
+
+		</section>
+
+	@endif
+
+	<div class="inalert-box" id="sucess_recover">
+			<div class="inalert-title">Recuperación éxitosa</div>
+
+			<div class="inalert-content">
+				<div class="inalert-message" style="width: 400px">
+					<p>
+						¡Maravilloso! Nos alegra que haya podido recuperar su identificación, a continuación se proporcionan los datos nuevamente:
+					</p>
+
+					<p data-margin="20px 0">
+						<strong>Nombre de usuario:</strong>
+						<label class="username"></label>
+						<br />
+						<strong>Correo electrónico:</strong>
+						<label class="email"></label>
+					</p>
+
+					<p>
+						¡Tenga más cuidado la próxima vez!
+					</p>
+				</div>
+				<div class="inalert-foot"></div>
+			</div>
+		</div>
+
+	<p>
+		<a href="{PATH}/connect/forgot" class="ibtn iblue">Regresar</a>
+	</p>
+
+</div>
+</div>

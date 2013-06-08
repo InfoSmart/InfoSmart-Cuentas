@@ -1,0 +1,81 @@
+<div class="content">
+	<section class="min-desc">
+		<h3>%app_name%</h3>
+
+		<p>
+			%app_description%
+		</p>
+	</section>
+
+	<section>
+		<form action="{PATH}/connect/authorize" method="POST" class="login-form">
+			<input type="hidden" name="public" value="{$R['public']}" />
+			<input type="hidden" name="return" value="%return%" />
+			<input type="hidden" name="authorize" value="{$authKey}" />
+			<input type="hidden" name="scope" value="%scope%" />
+
+			@if ( $app['official'] !== '1' )
+				<p class="center">
+					%app_name% quiere utilizar tu información de {SITE_NAME} en su sitio ¿quieres permitirlo?
+				</p>
+			@endif
+
+			<div class="btns">
+				<button class="ibtn igiant">Permitir a %app_name%</button>
+				<a href="{$return}{$e}authorize=cancel" class="ibtn ired igiant">Cancelar</a>
+			</div>
+		</form>
+	</section>
+
+	<div class="scope">
+		<strong>Si aceptas, %app_name% tendrá acceso a:</strong>
+
+
+		<li data-title="%me_name%">
+			Tu nombre
+		</li>
+
+		<li data-title="%me_username%">
+			Tu nombre de usuario
+		</li>
+
+		<li data-title="%me_gender%">
+			Tu sexo
+		</li>
+
+		@foreach ( $scope as $key => $name )
+			<li data-title="{API::ScopeValue($me[$key], $key)}">
+				Tu {$name}
+			</li>
+		@endforeach
+	</div>
+</div>
+</div>
+
+<section class="graybg">
+		¿No eres tu?
+		<a href="{PATH}/actions/logout?return=%return_reg%" class="ibtn iblue">Acceder con otra cuenta</a>
+</section>
+
+<div class="wrap">
+<div class="content">
+	<div class="features">
+		@foreach($features as $key => $data)
+			<section>
+				<figure>
+					@if( !empty($data['image']) )
+						<img src="{PATH}/photo.feature.app/{$data['image']}" alt="{$data['title']}" title="{$data['title']}" />
+					@endif
+				</figure>
+
+				<div class="description">
+					<span class="title">{$data['title']}</span>
+
+					<p>
+						{$data['content']}
+					</p>
+				</div>
+			</section>
+		@endforeach
+	</div>
+</div>

@@ -1,0 +1,117 @@
+{Fb::Prepare()}
+
+<div class="content">
+	<section class="min-desc">
+		<h3>Empieza tu aventura por InfoSmart</h3>
+
+		<p>
+			Con {SITE_NAME} puedes administrar y usar tu información en cualquiera de nuestras aplicaciones.
+		</p>
+	</section>
+
+	<section>
+		<div class="box-error">
+			{$message}
+		</div>
+
+		<form action="{PATH}/actions/login" method="POST" class="login-form">
+			<input type="hidden" name="return" value="%return%" />
+
+				<div class="center">
+					<p class="inp">
+						<label>Identificación:</label>
+						<input type="text" name="id" value="{$loginID}" placeholder="Correo electrónico, nombre de usuario o número de teléfono" required spellcheck="false" {$fieldID} />
+
+						@if ( $error['field'] == 'id' )
+							<span class="herror block">{$error['message']}</span>
+						@endif
+					</p>
+
+					<p class="inp">
+						<label>Contraseña:</label>
+						<input type="password" name="password" value="" required {$fieldPassword} />
+
+						@if ( $error['field'] == 'password' )
+							<span class="herror block">{$error['message']}</span>
+						@endif
+					</p>
+				</div>
+
+				<input type="file" name="photo_access" id="photo_access" accept="image/png,image/jpeg,image/gif" />
+
+				<div class="btns">
+					<button class="ibtn igiant">Acceder</button>
+
+					<a class="ibtn iblue igiant" id="access_photo">Acceder con una imagen</a>
+				</div>
+		</form>
+	</section>
+
+	<section class="center" data-margin="50px 0px">
+		<h4>o inicia/regístrate...</h4>
+	</section>
+</div>
+</div>
+
+<section class="graybg">
+	<div class="social">
+		<a href="{PATH}/actions/login.social.php?type=facebook&return=%return%" class="fb">con Facebook</a>
+		<a href="{PATH}/actions/login.social.php?type=twitter&return=%return%" class="tw">con Twitter</a>
+		<a href="{PATH}/actions/login.social.php?type=steam&return=%return%" class="steam">con Steam</a>
+	</div>
+
+	<div class="other">
+		<a href="{PATH}/connect/forgot">¿Has olvidado tus datos?</a>
+		<a href="{PATH}/connect/register?return=%return_reg%" class="ibtn ired">Registrate</a>
+	</div>
+</section>
+
+<div class="wrap">
+<div class="content">
+	<div class="features">
+		<section>
+			<figure>
+				<img src="{RESOURCES}/images/pre/screen.accounts.popups.png" alt="Acceso rápido y seguro" />
+			</figure>
+
+			<div class="description">
+				<span class="title">Acceso rápido y seguro.</span>
+
+				<p>
+					¿Para que tener una cuenta en cada una de nuestras aplicaciones?
+				</p>
+
+				<p>
+				 	Con tu cuenta podrás acceder a todas nuestras herramientas con un solo clic o incluso de forma automática, sin hacer nada ya estarás dentro.
+				</p>
+			</div>
+		</section>
+
+		<section>
+			<figure>
+				<img src="{RESOURCES}/images/pre/mouse.png" alt="" />
+			</figure>
+
+			<div class="description">
+				<span class="title">Tu controlas tu información.</span>
+
+				<p>
+					Con tu cuenta también obtendrás un perfil público, podrás controlar tu información en todo momento incluyendo la privacidad de ella.
+				</p>
+
+				<p>
+					¿No te gusta el perfil? Podrás desactivarlo en cualquier momento o personalizarlo con un dominio propio.
+				</p>
+			</div>
+		</section>
+	</div>
+</div>
+
+<script>
+function MyAppInit()
+{
+	@if ( $emailValid )
+		Info.ShowNotify('¡Perfecto! Tu correo electrónico ha sido verificado.', 5000);
+	@endif
+}
+</script>

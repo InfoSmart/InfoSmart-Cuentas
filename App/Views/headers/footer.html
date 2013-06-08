@@ -1,0 +1,38 @@
+</div>
+
+<div class="clear"></div>
+
+@if ( $page['home'] )
+
+	<div class="inalert-box" id="oops_message">
+		<div class="inalert-title">¡Oops!</div>
+
+		<div class="inalert-content">
+			<div class="inalert-message" style="width: 400px">
+				<p>
+					¡Oh! Al parecer te has encontrado con un terrible error técnico, no te preocupes nuestros chimpancés superdesarrollados ya estan investigando el problema.
+				</p>
+
+				<p>
+					Refresca la página y vuelve a intentarlo.
+				</p>
+
+				<p>
+					Si ves a alguno de esos chimpancés porfavor proporcionales este código: <span id="oops_code"></span>
+				</p>
+			</div>
+			<div class="inalert-foot"></div>
+		</div>
+	</div>
+
+@endif
+
+<footer>
+	<div class="wrapper">
+		<div class="left">
+			<a href="http://infosmart.mx/">%site_publisher%</a> © {date('Y')}. Todos los derechos reservados.
+		</div>
+	</div>
+</footer>
+
+</div>

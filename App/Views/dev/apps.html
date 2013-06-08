@@ -1,0 +1,42 @@
+<div class="content">
+	<div class="wrap">
+		<div class="clear"></div>
+
+		@if ( $apps == false )
+			<p>
+				No has creado ninguna aplicación.
+			</p>
+		@else
+
+		<div class="apps">
+		@while ( $row = Assoc($apps) )
+
+		<section data-appid="{$row['public_key']}">
+			<img src="{PATH}/photo.app/{$row['logo']}" class="logo" />
+			<a href="{PATH}/dev/apps/{$row['public_key']}" class="name">{$row['name']}</a>
+
+			<div class="desc">
+				{$row['description']}
+			</div>
+
+			<div class="keys">
+				<span>
+					<strong>Llave pública</strong>
+					{$row['public_key']}
+				</span>
+
+				<span>
+					<strong>Llave privada</strong>
+					<label class="private-key">{$row['private_key']}</label>
+
+					<a data-tooltip="¿Alguien ha podido conseguir su llave privada? Vuelva a generar una llave privada y evite el uso malintencionado de su aplicación." data-action="new-key">Generar una nueva llave</a>
+				</span>
+			</div>
+		</section>
+
+		@endwhile
+		</div>
+
+		@endif
+	</div>
+</div>

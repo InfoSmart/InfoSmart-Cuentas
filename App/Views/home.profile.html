@@ -1,0 +1,98 @@
+<div class="content home">
+	<div class="wrap">
+		<section>
+			<h4>Perfil</h4>
+
+			<div class="in_form">
+				<!--
+				<section>
+					<div class="c1">
+						<input type="checkbox" value="true" name="profile" data-save @
+							@if ( $me['profile'] == '1' )
+							checked
+							@endif />
+					</div>
+
+					<div class="c2">
+						<p>
+							¿Deseas activar tu perfil?
+						</p>
+
+						<span class="h">
+							Tu perfil te proporciona un sitio para mostrar información acerca de ti. <a href="http://{$profileName}.infosmart.mx/" target="_blank">http://{$profileName}.infosmart.mx/</a>
+						</span>
+					</div>
+				</section>
+				-->
+
+				<section>
+					<div class="c1">
+						<input type="checkbox" value="true" name="public_api" data-save
+						@if ( $me['public_api'] == '1' )
+							checked
+						@endif />
+					</div>
+
+					<div class="c2">
+						<p>
+							¿Deseas proporcionar tu información pública en nuestra API?
+						</p>
+
+						<span class="h">
+							Permitirá a las aplicaciones poder obtener tu información pública (como tu nombre, dirección de tu perfil, nombre de usuario y sexo) para ofrecerte un mejor servicio. Te recomendamos solo desactivarlo si tu privacidad es muy importante.
+						</span>
+					</div>
+				</section>
+			</div>
+		</section>
+
+		<section>
+			<h4>Privacidad</h4>
+
+			<p>
+				Selecciona la privacidad de tu información.
+			</p>
+
+			<p>
+				Ten en cuenta que la información que marques como pública será visible por cualquier persona tanto en tu perfil (próximamente) como en nuestra API (Incluso si tienes tu perfil desactivado)
+			</p>
+
+			<div class="in_form" id="privacy">
+				@foreach ( $PRIVACY as $key => $name )
+					<section>
+						<div class="c1">
+							<select name="privacy_{$key}" id="privacy_{$key}" role="menu">
+								<option value="public">Público</option>
+								<option value="private"
+								@if ( $me_privacy[$key] == 'private')
+									selected
+								@endif >Privado</option>
+							</select>
+
+							<span class="herror" data-for="privacy_{$key}"></span>
+						</div>
+
+						<div class="c2">
+							<p>
+								{$name}
+							</p>
+
+							<span class="h">
+								{{ $display = $me[$key] }}
+
+								@if ( $key == 'gender' )
+									{{ $display = ( $me['gender'] == 'm' ) ? 'Hombre' : 'Mujer' }}
+								@endif
+
+								@if ( $key == 'lastaccess' )
+									{{ $display = Date::CalculateTime($me['lastaccess']) }}
+								@endif
+
+								{$display}
+							</span>
+						</div>
+					</section>
+				@endforeach
+			</div
+		</section>
+	</div>

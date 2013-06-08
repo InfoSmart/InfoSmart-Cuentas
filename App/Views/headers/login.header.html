@@ -1,0 +1,22 @@
+<div class="page" id="page">
+<header>
+	<div class="wrap">
+		<figure>
+			<img src="{LOGO}" alt="{SITE_NAME}" title="{SITE_NAME}" />
+		</figure>
+
+		@if ( LOG_IN )
+
+			<div class="info">
+				<figure>
+					<img src="{PATH}/photo/%me_username%/small" alt="%me_name%" title="%me_name%" />
+				</figure>
+
+				<span>%me_name%</span>
+			</span>
+
+		@endif
+	</div>
+</header>
+
+<div class="wrap {$page['id']} {$page['class']}">

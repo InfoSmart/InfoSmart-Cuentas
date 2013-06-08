@@ -1,0 +1,161 @@
+<div class="content home">
+	<div class="wrap">
+
+		@if ( $me['account_creation'] >= (time() - (1 * 24 * 60 * 60)) )
+			<div class="box-info block">
+				<p>
+					<strong>¿Que es lo que sigue?</strong><br />%SITE_NAME% aún se encuentra en una versión <b>BETA</b> o en si... no terminada del todo, es por eso que durante estos días encontrarás algunos cambios y mejoras al sitio.
+				</p>
+
+				<p>
+					<strong>¿Y que puedo hacer con %SITE_NAME%?</strong><br />Por ahora no mucho, tu cuenta (%me_username%) te servirá para acceder a las futuras aplicaciones de InfoSmart <b>¡con un solo clic!</b>
+				</p>
+				<p>
+					<strong>¿Que tipo de aplicaciones?</strong><br />Aplicaciones sociales, aplicaciones para el trabajo, aplicaciones para negocios y empresas e incluso... ¡juegos!
+				</p>
+				<p>
+					Tu cuenta será importante en el futuro por lo que estos 5 minutos (o menos) que gastaste para crearla no serán en vano. Si tu información esta completa y es correcta ¡nos vemos en una aplicación!
+				</p>
+			</div>
+		@endif
+
+		<section class="form">
+			<h4>Información personal</h4>
+
+			<div class="col3">
+				<p>
+					<label>Nombre</label>
+					<input type="text" name="firstname" class="share" value="%me_firstname%" placeholder="Nombre" required x-webkit-speech speech data-save />
+					<input type="text" name="lastname" class="share" value="%me_lastname%" placeholder="Apellidos" required x-webkit-speech speech data-save />
+
+					<span class="herror" data-for="name"></label>
+				</p>
+
+				<p>
+					<label>País actual</label>
+					<select name="country" id="country" required role="menu" data-save>
+						@while ( $row = Assoc($countrys) )
+						<option value="{$row['code2']}" @
+							@if ( $me['country'] == $row['code2'] )
+								selected="selected"
+							@endif >{$row['name']}</option>
+						@endwhile
+					</select>
+					<span class="herror" data-for="country"></label>
+				</p>
+			</div>
+
+			<div class="col4">
+				<p>
+					<label>Sexo</label>
+
+					<select name="gender" id="gender" required role="menu" data-save>
+						<option value="f">Mujer</option>
+						<option value="m"
+							@if ( $me['gender'] == 'm' )
+								selected="selected"
+							@endif >Hombre</option>
+					</select>
+					<span class="herror" data-for="gender"></label>
+				</p>
+
+				<p>
+					<label>Ubicación</label>
+
+					<input type="text" name="location" value="%me_location%" placeholder="Ciudad actual" x-webkit-speech speech data-save />
+					<span class="herror" data-for="location"></label>
+				</p>
+			</div>
+		</section>
+
+		<section class="emails">
+			<h4>Correo electrónico</h4>
+
+			<p>
+				<span class="t1">Correo primario</span>
+				%me_email%
+				<a data-tooltip="Su correo electrónico primario es el más importante de su cuenta, sirve para identificarlo y por motivos de seguridad no puede cambiarlo. En el futuro desarrollaremos sistemas seguros que le permitirán cambiar su correo de forma segura." class="alert">¿Porque no puedo cambiarlo?</a>
+			</p>
+
+			<div class="alt_emails">
+			@foreach ( $me_emails as $key => $row )
+				<p>
+					<span class="t1">
+						<a class="icon" title="Eliminar correo" data-action="delete_altemail" data-altemail="{$key}">&#xe221;</a>
+					</span>
+
+					{$row['email']}
+
+					@if ( $row['verified'] == '0' )
+						<a class="alert" title="Enviar correo de verificación." data-tooltip="Los correos electronicos sin verificar no pueden ser usados en otras aplicaciones o para recuperar el acceso a su cuenta. De clic para enviar un correo electrónico de verificación." data-action="verify_altemail" data-altemail="{$key}">¡Sin verificar!</a>
+					@endif
+				</p>
+			@endforeach
+			</div>
+
+			<div class="add">
+				<span class="tt1">Agregar una nueva dirección de correo alternativa:</span>
+
+				@if ( $me['email_verified'] == '1' )
+					<p>
+						<input type="email" id="alt_email" value="" />
+						<button id="add_alt_email" class="ibtn">Agregar</button>
+					</p>
+				@else
+					<p>
+						Es necesario que verifiques <i>%me_email%</i> primero.
+					</p>
+				@endif
+
+				<span class="herror" data-for="alt_email"></span>
+			</div>
+		</section>
+
+		<section>
+			<h5>Historial de acceso</h5>
+
+				<table cellspacing="0" cellpadding="0" class="intable">
+					<thead>
+						<tr>
+							<th>Navegador web</th>
+							<th>Sistema operativo</th>
+							<th>Dirección IP</th>
+							<th>Fecha</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						@while ( $row = Assoc($loginRecords) )
+
+							{{ $country = Client::GetLocation($row['ip_address']) }}
+
+							<tr>
+								<th>{$row['browser']}</th>
+								<th>{$row['os']}</th>
+								<th>{$row['ip_address']} ({$country['RegionName']}, {$country['CountryName']})</th>
+								<th data-time="{$row['date']}" data-title="{Date::TimeDate($row['date'])}">{CalcTime($row['date'])}</th>
+							</tr>
+
+						@endwhile
+					</tbody>
+				</table>
+		</section>
+	</div>
+
+<script>
+function MyAppInit()
+{
+	$('input[type="hidden"]').each(function()
+	{
+		$(this).attr('data-save', '');
+	});
+
+	@if ( $me['email_verified'] !== '1' )
+		Info.ShowNotify('Tu correo electrónico no ha sido verificado ¿que pasaría si un día pierdes el acceso a tu cuenta? Valida tu correo electrónico para poder recuperarla fácilmente y desbloquear otras funciones.<br /><a id="request_email_key">Solicitar un enlace de verificación.</a>');
+	@endif
+
+	@if ( $emailValid )
+		Info.ShowNotify('¡Perfecto! Tu correo electrónico ha sido verificado.', 5000);
+	@endif
+}
+</script>

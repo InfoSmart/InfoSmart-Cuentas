@@ -1,0 +1,57 @@
+<div class="panel fixed">
+	<section class="me box">
+		<figure>
+			<img src="{PATH}/photo/%me_username%/small" id="me_photo" title="Cambiar foto de perfil" />
+		</figure>
+
+		<div class="info">
+			<a href="{PATH}" title="Mi nombre" class="name">
+				<span class="in-firstname">%me_firstname%</span>
+				<span class="in-lastname">%me_lastname%</span>
+			</a>
+		</div>
+
+		<div class="clear"></div>
+
+		<div id="location" class="in-location subinfo" title="Haz clic para actualizar tu ubicación.">
+			@if ( empty($me['location']) )
+				Haz clic para actualizar tu ubicación.
+			@else
+				%me_location%
+			@endif
+		</div>
+
+		@if ( $me['sessionLimit'] > 0 )
+			<div id="session-limit" class="subinfo" data-time="%me_sessionLimit%" data-num="true" data-template="Tu sesión expira en ^t^">
+				Tu sesión expira en {strtolower(CalcTime($me['sessionLimit'], true))}
+			</div>
+		@endif
+	</section>
+
+	@if ( is_array($nav) )
+		<section class="box">
+			<nav>
+				@foreach ( $nav as $title => $url )
+
+					{{ $title = str_ireplace('[new]', '<strong class="new">¡NUEVO!</strong>', $title) }}
+					{{ $title = preg_replace('/\[(.+?)\]/', '<span class="icon">$1</span>', $title) }}
+
+					<a href="{$url}">{$title}</a>
+
+				@endforeach
+
+				@if ( $P['from'] !== 'accounts.infosmart.mx' )
+					<a href="{PATH}/" class="to-accounts">Ir a %SITE_NAME%</a>
+				@endif
+			</nav>
+		</section>
+	@endif
+
+	<div id="addons"></div>
+</div>
+
+<input type="file" id="upload_photo" accept="image/png,image/jpeg,image/gif" />
+
+<script>
+Me = {json_encode(API::PrepareJS($me))}
+</script>

@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.=
+w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	</head>
+
+	<body style="
+	color: #444444 !important;
+	font-family: Open Sans, Droid Sans, Arial;
+	font-size: 14px;
+	margin: 0;
+	padding: 0;">
+
+		<div>
+			<img src="{LOGO}" alt="{SITE_NAME}" title="{SITE_NAME}" />
+		</div>
+
+		<p style="font-size: 18px">
+			Saludos {$user['name']},
+		</p>
+
+		<div style="line-height: 20px">
+			<p>
+				A continuación te proporcionamos el enlace para verificar tu correo electrónico ({$user['email']}). Recuerda que verificarlo nos asegura que eres el propietario de esta cuenta de correo y nos ayuda a confíar en ella para realizar acciones delicadas como la recuperación de tu cuenta.
+			</p>
+
+			<p>
+				<a href="{PATH}/actions/confirm.email/{$user['email_key']}">{PATH}/actions/confirm.email/{$user['email_key']}</a>
+			</p>
+
+			<p style="font-size: 11px;">
+				Si no puedes dar clic por favor copia y pega el enlace en la barra de direcciones en tu navegador web.
+			</p>
+
+			<p>
+				Esperemos que tu cuenta en %SITE_NAME% pueda servirte para darte una experiencia única en la web.
+			</p>
+		</div>
+
+		<cite>
+			El equipo de InfoSmart
+		</cite>
+
+		<div style="margin-top: 30px; border-top: 1px solid #D8D8D8; font-size: 10px; padding-top: 10px;">
+			<a href="http://infosmart.mx/">InfoSmart</a> © {date('Y')}. Todos los derechos reservados.
+		</div>
+
+	</body>
+</html>

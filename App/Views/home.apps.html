@@ -1,0 +1,53 @@
+<div class="content home">
+	<div class="wrap col1">
+		<section>
+			<h4>Aplicaciones que has usado</h4>
+
+			@if ( !$apps )
+				<p>
+					No has usado ninguna aplicación.
+				</p>
+			@else
+
+			@while ( $row = Assoc($apps) )
+
+				{{ $app = Apps::Get($row['appId']) }}
+
+				<div class="app" data-appid="{$app['id']}">
+					<figure>
+						<img src="http://tools.infosmart.mx/to/favicon?url={$app['website']}" />
+					</figure>
+
+					<span class="name">
+						{$app['name']}
+					</span>
+
+					<div class="details">
+						<time data-time="{$row['last_used']}" data-title="{Date::TimeDate($row['last_used'], true)}">{CalcTime($row['last_used'])}</time>
+
+						@if ( $app['ownerId'] == ME_ID )
+							<a href="{PATH}/dev/apps/{$app['public_key']}" class="owner">Editar</a>
+						@endif
+
+						<a href="{$app['website']}" target="_blank">Visitar</a>
+
+						<a id="delete_app" data-appid="{$app['id']}" data-title="{$app['name']} ya no podrá usar tu información.">Retirar permisos</a>
+					</div>
+				</div>
+
+			@endwhile
+
+			@endif
+		</section>
+	</div>
+
+	<div class="col2">
+		<section class="last-info">
+			<h5>¿Desarrollador?</h5>
+
+			<p>
+				Puedes empezar a registrar tus propias aplicaciones en el estado BETA de <a href="%PATH%/dev/">nuestra API</a>.
+			</p>
+		</section>
+	</div>
+</div>

@@ -1,0 +1,52 @@
+<div class="content">
+	<h4>Recuperemos su cuenta</h4>
+
+	<p>
+		No se preocupe, siga las siguientes instrucciones para recuperar el acceso a su cuenta.
+	</p>
+
+	<form action="%PATH%/connect/forgot" method="GET" class="forgot-steps forgot-form">
+		<section class="step" data-step="1">
+			<p>
+				<label>¿Qué información ha perdido?</label>
+
+				<input type="radio" name="type" value="id" /> La identificación. <i>(Nombre de usuario y/o correo electrónico)</i>
+				<br />
+				<input type="radio" name="type" value="password" /> La contraseña.
+			</p>
+		</section>
+
+		<section class="step" data-step="2" data-type="id">
+			<p>
+				<label>¿Como podemos identificarte?</label>
+
+				<input type="radio" name="recover" value="remember_username" />
+				<span data-tooltip="Si recuerda parte de su nombre usuario o correo podremos proporcionarle una lista de los usuarios que coinciden con lo que recuerda." data-tooltip-bottom="20">Recuerdo parte de mi nombre de usuario o correo electrónico primario.</span>
+				<!--<br />
+				<input type="radio" name="recover" value="remember_info" />
+				<span data-tooltip="Si recuerdas la información que escribiste dentro de tu cuenta podremos darnos cuenta de quien eres." data-tooltip-bottom="20">Rellenar toda la información de mi cuenta que recuerde.</span>-->
+				<br />
+				<input type="radio" name="recover" value="remember_alt_email" />
+				<span data-tooltip="Puede usar un correo electrónico alternativo que haya aliado a su cuenta." data-tooltip-bottom="20">Recuerdo un correo electrónico alternativo de mi cuenta.</span>
+			</p>
+
+			<span class="hint">Recuerda que puedes iniciar sesión en tu cuenta con tu correo electrónico en vez de tu nombre de usuario. También puedes hacerlo con una imágen de acceso o un servicio social conectado a tu cuenta.</span>
+		</section>
+
+		<section class="step" data-step="2" data-type="password">
+			<p>
+				<label>¿Quien eres?</label>
+
+				<input type="text" name="id" id="password_id" placeholder="Correo electrónico, nombre de usuario o número de teléfono" />
+				<span class="herror" data-for="password_id"></span>
+			</p>
+
+			<span class="hint">Puedes utilizar este método si has perdido el acceso al servicio social conectado a tu cuenta y no estableciste una contraseña.</span>
+		</section>
+
+
+		<button class="ibtn next">Siguiente</button>
+	</form>
+
+	</div>
+</div>

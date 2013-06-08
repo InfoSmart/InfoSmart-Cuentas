@@ -1,0 +1,26 @@
+<div class="page" id="page">
+<header class="inheader">
+	<div class="wrap">
+		<div class="left">
+			<figure>
+				<a href="{PATH}"><img src="{LOGO}" title="{SITE_NAME}" alt="{SITE_NAME}" /></a>
+			</figure>
+
+			<h3>{$page['title']}</h3>
+		</div>
+
+		<div class="right">
+			@if ( $page['id'] == 'apps' )
+				<a href="{PATH}/dev/apps/new" class="ibtn ibig">Crear aplicación</a>
+			@endif
+
+			@if ( $page['id'] == 'app' )
+				<a href="{PATH}/actions/dev/delete.app.php?public=%app_public_key%" class="ibtn ired ibig" id="delete_app">Eliminar aplicación</a>
+
+				<a href="{PATH}/dev/apps" class="ibtn iblue">Regresar</a>
+			@endif
+		</div>
+	</div>
+</header>
+
+<div class="in-panel"></div>

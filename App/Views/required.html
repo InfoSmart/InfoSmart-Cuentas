@@ -1,0 +1,96 @@
+<div class="content">
+	<div class="wrap">
+		<h3>¡Ya casi terminas!</h3>
+
+		<p>
+			¡Yey! <strong>%me_username%</strong> te has registrado éxitosamente con tu cuenta de <b>{ucfirst($me['service']['service'])}</b> sin embargo hay cierta información requerida que no hemos podido obtener o procesar. Nos encantaría que nos proporcionaras la siguiente información:
+		</p>
+
+		<div class="box-error">
+			Al parecer han ocurrido los siguientes problemas:
+
+			<ul>
+				{$errors}
+			</ul>
+		</div>
+
+		<form action="{PATH}/actions/save.required.php" method="POST" class="register-form">
+			<div class="col3">
+				@if ( empty($me['name']) OR empty($me['firstname']) OR empty($me['lastname']) )
+				<p>
+					<label>Nombre</label>
+					<input type="text" name="firstname" class="share" value="{$data['firstname']}" placeholder="Nombre" required x-webkit-speech speech />
+					<input type="text" name="lastname" class="share" value="{$data['lastname']}" placeholder="Apellidos" required x-webkit-speech speech />
+				</p>
+				@endif
+
+				@if ( empty($me['email']) )
+				<p>
+					<label>Correo electrónico</label>
+					<input type="email" name="email" value="{$data['email']}" required />
+					<span class="herror" data-for="email"></label>
+				</p>
+				@endif
+
+				@if ( empty($me['birthday']) )
+				<p>
+					<label>Fecha de nacimiento</label>
+
+					<input type="text" min="1" max="31" class="share-3" name="bday" value="{$data['bday']}" placeholder="Día" required />
+
+					<select name="bmonth" id="bmonth" required class="share-3" role="menu">
+						<option value="">Mes</option>
+
+						@foreach( $months as $key => $month )
+						<option value="{$key}"
+						@if($data['bmonth'] == $key)
+							selected="selected"
+						@endif >{$month}</option>
+						@endforeach
+					</select>
+
+					<input type="text" class="share-3" name="byear" value="{$data['byear']}" placeholder="Año" required />
+				</p>
+				@endif
+
+				@if ( empty($me['gender']) )
+				<p>
+					<label>Sexo</label>
+
+					<select name="gender" id="gender" required role="menu">
+						<option value="f">Mujer</option>
+						<option value="m"
+						@if($data['gender'] == 'm')
+							selected="selected"
+						@endif >Hombre</option>
+					</select>
+				</p>
+				@endif
+
+				@if ( empty($me['country']) )
+				<p>
+					<label>Ubicación</label>
+					<select name="country" id="country" required role="menu">
+						<option value="">Selecciona...</option>
+
+						@while($row = Assoc($countrys))
+							<option value="{$row['code2']}"
+							@if ( COUNTRY == $row['code2'] OR $data['country'] == $row['code2'] )
+								selected="selected"
+							@endif >{$row['name']}</option>
+						@endwhile
+					</select>
+				</p>
+				@endif
+
+				<p>
+					<button class="ibtn">Guardar y continuar</button>
+					<a href="{PATH}/actions/logout" class="ibtn ired">Cancelar y cerrar sesión</a>
+				</p>
+			</div>
+
+			<div class="col4">
+			</div>
+		</form>
+	</div>
+</div>

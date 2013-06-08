@@ -1,0 +1,179 @@
+<div class="content home">
+	<div class="wrap">
+
+		<div class="box-error" id="error">
+			{$message}
+		</div>
+
+		<section>
+			<h4>Acceso y recuperación de la cuenta</h4>
+
+			<div class="in_form">
+				<section>
+					<div class="c1">
+						<input type="file" name="photo_access" id="photo_access" />
+					</div>
+
+					<div class="c2">
+						<p style="margin-top: 3px;">
+							Imagen de acceso a la cuenta
+						</p>
+
+						<span class="h" data-tooltip="Recuerda usar una imagen que solo tu poseas, por ejemplo una imagen creada por ti o una foto familiar.">
+							Puedes utilizar una imagen especial para acceder a tu cuenta en vez de usar tu identificación y tu contraseña.
+
+							@if ( !empty($me['photo_access']) )
+								<span class="info_photo_access">
+									<strong>Actualmente tienes una imagen de acceso.</strong>
+									<a class="red" id="delete_photo_access">Eliminar</a>
+								</span>
+							@endif
+						</span>
+					</div>
+				</section>
+			</div>
+
+			<div class="form forgot-form">
+				<p>
+					<label>Palabra magica</label>
+					<input type="password" name="magic_word" id="magic_word" value="%me_magic_word%" placeholder="Escribe algo que solo tu sepas." data-save x-webkit-speech speech data-tooltip="La palabra mágica te puede ayudar a recuperar el acceso a tu cuenta, debe ser una palabra que solo tu sepas. Algo muy secreto. ¡Descuida! No le diremos a nadie ;)" data-tooltip-align="bottom" />
+					<span class="herror" data-for="magic_word"></span>
+				</p>
+			</div>
+		</section>
+
+		<section>
+			<h4>Conexiones sociales</h4>
+
+			<p>
+				Puedes conectar tu cuenta de %SITE_NAME% con tus servicios sociales favoritos. Una vez conectados podrás iniciar sesión con su respectivo botón (y claro, es más seguro que usar tu identificación y contraseña)
+			</p>
+
+			<div class="connection">
+				<figure>
+					<img src="%RESOURCES%/images/services/FB-f-Logo__blue_100.png" alt="Facebook" title="Facebook" />
+				</figure>
+
+				@if ( !empty($services['facebook']) )
+					<span>
+						Te has conectado con <strong>{$services['facebook']['name']}</strong>
+						<a href="%PATH%/actions/disconnect?id={$services['facebook']['id']}&service=facebook">Desconectar</a>
+					</span>
+				@else
+					<span>
+						<a href="%PATH%/actions/connect.social.php?type=facebook">Conecta tu cuenta</a>
+					</span>
+				@endif
+			</div>
+
+			<div class="connection">
+				<figure>
+					<img src="%RESOURCES%/images/services/twitter_newbird_blue.png" alt="Twitter" title="Twitter" />
+				</figure>
+
+				@if ( !empty($services['twitter']) )
+					<span>
+						Te has conectado con <strong>{$services['twitter']['name']}</strong>
+						<a href="%PATH%/actions/disconnect?id={$services['twitter']['id']}&service=twitter">Desconectar</a>
+					</span>
+				@else
+					<span>
+						<a href="%PATH%/actions/connect.social.php?type=twitter">Conecta tu cuenta</a>
+					</span>
+				@endif
+			</div>
+
+			<div class="connection">
+				<figure>
+					<img src="%RESOURCES%/images/services/logo_steam.png" alt="Steam" title="Steam" />
+				</figure>
+
+				@if ( !empty($services['steam']) )
+					<span>
+						Te has conectado con <strong>{$services['steam']['name']}</strong>
+						<a href="%PATH%/actions/disconnect?id={$services['steam']['id']}&service=steam">Desconectar</a>
+					</span>
+				@else
+					<span>
+						<a href="%PATH%/actions/connect.social.php?type=steam">Conecta tu cuenta</a>
+					</span>
+				@endif
+			</div>
+		</section>
+
+		<section id="password">
+			<h4>Contraseña</h4>
+
+			<p>
+				¿Necesitas cambiar tu contraseña?
+			</p>
+
+			<form action="%PATH%/actions/change.password.php" method="POST" class="st1-form">
+				@if ( !empty($me['password']) )
+				<p>
+					<input type="password" name="actual_password" placeholder="Contraseña actual" required />
+				</p>
+				@endif
+
+				<p>
+					<input type="password" name="new_password" placeholder="Nueva contraseña" required />
+				</p>
+
+				<p>
+					<input type="password" name="new_password_confirm" placeholder="Vuelve a escribir tu nueva contraseña" required />
+				</p>
+
+				<p>
+					<button class="ibtn">Cambiar</button>
+				</p>
+			</form>
+		</section>
+
+		<section>
+			<h5>Cambios que has hecho en tu contraseña</h5>
+
+			{{ $passwordRecords = AcUsers::GetPasswordRecords() }}
+
+			@if ( !$passwordRecords )
+
+				<p>
+					No has cambiado tu contraseña.
+				</p>
+
+			@else
+
+				<p>
+					A continuación puede ver una lista de los cambios que se han hecho a su contraseña:
+				</p>
+
+				<table cellspacing="0" cellpadding="0" class="intable">
+					<thead>
+						<tr>
+							<th>Contraseña</th>
+							<th>Navegador web</th>
+							<th>Sistema operativo</th>
+							<th>Dirección IP</th>
+							<th>Fecha de cambio</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						@while ( $row = Assoc($passwordRecords) )
+
+							{{ $country = Client::GetLocation($row['ip_address']) }}
+
+							<tr>
+								<th>{$row['hint']}******</th>
+								<th>{$row['browser']}</th>
+								<th>{$row['os']}</th>
+								<th>{$row['ip_address']} ({$country['RegionName']}, {$country['CountryName']})</th>
+								<th data-time="{$row['date']}" data-title="{Date::TimeDate($row['date'])}">{CalcTime($row['date'])}</th>
+							</tr>
+
+						@endwhile
+					</tbody>
+				</table>
+
+			@endif
+		</section>
+	</div>

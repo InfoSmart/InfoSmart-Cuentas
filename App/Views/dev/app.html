@@ -1,0 +1,165 @@
+<div class="content">
+	<div class="wrap">
+	<div class="box-error">
+		{$error}
+	</div>
+
+	<form action="{PATH}/actions/dev/save.app.php" method="POST" class="login-form" enctype="multipart/form-data">
+
+		<section class="sep-form">
+			<div class="photo">
+				<figure>
+					<img src="{PATH}/photo.app/%app_logo%" id="logo-image" />
+				</figure>
+
+				<p>
+					<label>Logotipo</label>
+					<input type="file" name="logo" id="logo" accept="image/png,image/jpeg" />
+				</p>
+			</div>
+
+			<p>
+				<label>Nombre</label>
+				<input type="text" name="name" value="%app_name%" required x-webkit-speech />
+			</p>
+
+			<p>
+				<label>Descripción</label>
+				<textarea name="description" id="description" required title="Escriba una descripción detallada de lo que puede hacer su aplicación.">%app_description%</textarea>
+
+				<a onclick="Voice.Enable('#description')">Dictar</a>
+			</p>
+
+			<p>
+				<label>Sitio web</label>
+				<input type="url" name="website" value="%app_website%" required />
+			</p>
+
+			<p>
+				<label>Correo electrónico de contacto</label>
+				<input type="email" name="webmaster" value="%app_webmaster%" required data-tooltip="Si ocurre un problema con tu aplicación ¿por donde podremos contactarte?" data-tooltip-align="bottom" />
+			</p>
+		</section>
+
+		<section class="sep-form">
+			<h4>Llamadas</h4>
+
+			<p>
+				<label>Actualizaciones automáticas</label>
+				<input type="url" name="callback_updates" value="%callback_updates%"  data-tooltip-align="bottom" data-tooltip="Cuando el usuario actualize su información en %SITE_NAME% se realizará una petición a esta página adjuntando una clave secreta y la nueva información del usuario. Puede utilizar esta característica para mantener la información de su usuario sincronizada con la información que mantiene en %SITE_NAME%" placeholder="http://example.com/actions/accounts.update.php" />
+			</p>
+
+			<p>
+				<label>Eliminación de información</label>
+				<input type="url" name="callback_delete" value="%callback_delete%"  data-tooltip-align="bottom" data-tooltip="Puede ofrecerle más confianza a sus usuarios eliminando la información que mantiene en su aplicación cuando el mismo ya no desea usarla. Cuando el usuario haga clic en Retirar Permisos de su aplicación %SITE_NAME% realizará una petición a esta página adjuntando una clave secreta." placeholder="http://example.com/actions/accounts.delete.php" />
+			</p>
+		</section>
+
+		<input type="hidden" name="public" value="%app_public_key%" />
+
+		<section id="features">
+			<h4>Características de su aplicación</h4>
+
+			@foreach ( $features as $key => $data )
+				<div class="feature">
+					<figure>
+						<img src="{PATH}/photo.feature.app/{$data['image']}" data-title="Cambiar imagen" />
+						<input type="file" name="feature_image[]" accept="image/png,image/jpeg" />
+					</figure>
+
+					<div class="description">
+						<p>
+							<input type="text" name="feature_title[]" placeholder="Titulo" value="{$data['title']}" x-webkit-speech />
+							<textarea name="feature_content[]" placeholder="Contenido">{$data['content']}</textarea>
+						</p>
+					</div>
+				</div>
+			@endforeach
+		</section>
+
+		<p>
+			<a id="add_feature">Agregar una nueva característica</a>
+			<span class="hint">Para eliminar una característica solo deja el campo de titulo vacio.</span>
+		</p>
+
+		<section>
+			<h4>Conexión</h4>
+
+			<p>
+				Puede personalizar los datos de la conexión social con el fin de recibir las estadísticas oficiales de su respectivo servicio. ¡La conexión de Facebook y Twitter a su nombre!
+			</p>
+
+			<div class="connect fb">
+				<div class="selection">
+					<input type="checkbox" name="connect_facebook" value="true"
+					@if ( !empty($connect['facebook']) )
+					data-checked="true"
+					@endif  />
+					<label>Personalizar la conexión con Facebook</label>
+				</div>
+
+				<div class="details">
+					<p>
+						<span>ID de tu aplicación en Facebook</span>
+						<input type="text" name="connect_facebook_id" value="{$connect['facebook']['public']}" />
+					</p>
+
+					<p>
+						<span>Código secreto de tu aplicación en Facebook</span>
+						<input type="text" name="connect_facebook_secret" value="{$connect['facebook']['secret']}" />
+					</p>
+
+					<span class="hint">Puede registrar su aplicación en: <a href="https://developers.facebook.com/apps" target="_blank">https://developers.facebook.com/apps</a></span>
+					<br />
+					<span class="hint">Es necesario que dentro de la configuración de su aplicación establezca permisos al dominio <strong>accounts.infosmart.mx</strong> y en la URL del sitio ajuste <strong>{PATH}/</strong></span>
+				</div>
+			</div>
+
+			<div class="connect tw">
+				<div class="selection">
+					<input type="checkbox" name="connect_twitter" value="true"
+					@if ( !empty($connect['twitter']) )
+					data-checked="true"
+					@endif  />
+					<label>Personalizar la conexión con Twitter</label>
+				</div>
+
+				<div class="details">
+					<p>
+						<span>Clave pública de tu aplicación en Twitter</span>
+						<input type="text" name="connect_twitter_id" value="{$connect['twitter']['public']}" />
+					</p>
+
+					<p>
+						<span>Clave secreta de tu aplicación en Twitter</span>
+						<input type="text" name="connect_twitter_secret" value="{$connect['twitter']['secret']}" />
+					</p>
+
+					<span class="hint">Puede registrar su aplicación en: <a href="https://dev.twitter.com/apps" target="_blank">https://dev.twitter.com/apps</a></span>
+				</div>
+			</div>
+
+			<span class="hint">Sabemos que estos datos son confidenciales por lo que serán cifrados y no se distribuirán.</span>
+		</section>
+
+		<p>
+			<button class="ibtn ibig">Guardar cambios</button>
+
+		</p>
+	</form>
+
+	<div id="feature-template" hidden>
+		<figure>
+			<img src="%RESOURCES_GLOBAL%/images/id/web.default.png" />
+			<input type="file" name="feature_image[]" accept="image/png,image/jpeg" />
+		</figure>
+
+		<div class="description">
+			<p>
+				<input type="text" name="feature_title[]" placeholder="Titulo" x-webkit-speech />
+				<textarea name="feature_content[]" placeholder="Contenido"></textarea>
+			</p>
+		</div>
+	</div>
+</div>
+</div>

@@ -1,0 +1,113 @@
+{Fb::Prepare()}
+
+<div class="content">
+	<section class="min-desc">
+		<h3>%app_name%</h3>
+
+		<p>
+			%app_description%
+		</p>
+	</section>
+
+	<section>
+		<div class="box-error">
+		</div>
+
+		<form action="{PATH}/actions/login" method="POST" class="login-form">
+			<input type="hidden" name="return" value="%return_login%" />
+			<input type="hidden" name="return_error" value="%return_error%" />
+
+				<div class="center">
+					<p class="inp">
+						<label>Identificación:</label>
+						<input type="text" name="id" value="{$loginId}" placeholder="Correo electrónico, nombre de usuario o número de teléfono" required spellcheck="false" {$fieldID} />
+
+						@if ( $error['field'] == 'id' )
+							<span class="herror block">{$error['message']}</span>
+						@endif
+					</p>
+
+					<p class="inp">
+						<label>Contraseña:</label>
+						<input type="password" name="password" value="" required {$fieldPassword} />
+
+						@if ( $error['field'] == 'password' )
+							<span class="herror block">{$error['message']}</span>
+						@endif
+					</p>
+				</div>
+
+				<input type="file" name="photo_access" id="photo_access" accept="image/png,image/jpeg,image/gif" />
+
+				<div class="btns">
+					<button class="ibtn igiant">Acceder</button>
+					<a class="ibtn iblue igiant" id="access_photo">Acceder con una imagen</a>
+					<a href="{$return}{$e}authorize=cancel" class="ibtn ired igiant">Cancelar</a>
+				</div>
+		</form>
+	</section>
+
+	<div class="scope">
+		<strong>Si aceptas, %app_name% tendrá acceso a:</strong>
+
+
+		<li>
+			Tu nombre
+		</li>
+
+		<li>
+			Tu nombre de usuario
+		</li>
+
+		<li>
+			Tu sexo
+		</li>
+
+		@foreach ( $AccScope as $key => $name )
+			<li>
+				Tu {$name}
+			</li>
+		@endforeach
+	</div>
+
+	<section class="center" data-margin="50px 0px">
+		<h4>o inicia/regístrate...</h4>
+</section>
+</div>
+</div>
+
+<section class="graybg">
+	<div class="social">
+		<a href="{PATH}/actions/login.social.php?public={$G['public']}&return=%return_reg%&type=facebook" class="fb">con Facebook</a>
+		<a href="{PATH}/actions/login.social.php?public={$G['public']}&return=%return_reg%&type=twitter" class="tw">con Twitter</a>
+		<a href="{PATH}/actions/login.social.php?public={$G['public']}&return=%return_reg%&type=steam" class="steam">con Steam</a>
+	</div>
+
+	<div class="other">
+		<a href="{PATH}/connect/forgot">¿Has olvidado tus datos?</a>
+		<a href="{PATH}/connect/register?return=%return_reg%" class="ibtn ired">¿Sin cuenta? ¡Registrate!</a>
+	</div>
+</section>
+
+<div class="wrap">
+<div class="content">
+	<div class="features">
+		@foreach ( $features as $key => $data )
+		<section>
+			<figure>
+				@if ( !empty($data['image']) )
+					<img src="{PATH}/photo.feature.app/{$data['image']}" alt="{$data['title']}" title="{$data['title']}" />
+				@endif
+			</figure>
+
+			<div class="description">
+				<span class="title">{$data['title']}</span>
+
+				<p>
+					{$data['content']}
+				</p>
+			</div>
+		</section>
+		@endforeach
+	</div>
+</div>

@@ -1,0 +1,30 @@
+<div class="content">
+	<h4>Recuperemos su contraseña.</h4>
+
+	<p>
+		¡Hola <i>{$user['name']}</i>! Con que has olvidado tu contraseña, no te preocupes, selecciona el correo electrónico a donde quieres que te enviemos un correo para cambiar tu contraseña:
+	</p>
+
+	<div class="box-error">{$message}</div>
+
+	<form action="{PATH}/actions/send.password.php" method="POST" style="margin-top: 30px" class="forgot-form radio">
+		<p>
+			<input type="radio" name="email" value="main" checked />
+			{$user['email']}
+		</p>
+
+		@foreach ( $emails as $row )
+			@if ( $row['verified'] == '1' )
+				<p>
+					<input type="radio" name="email" value="{$row['email']}" />
+					{$row['email']}
+				</p>
+			@endif
+		@endforeach
+
+		<span class="hint">Por seguridad los correos alternativos no verificados no son mostrados en esta lista.</span>
+		<br />
+		<button class="ibtn">¡Enviame el correo!</button>
+	</form>
+</div>
+</div>
