@@ -1,0 +1,323 @@
+/**
+ * Estilo - Desarrolladores
+ * InfoSmart. Todos los derechos reservados.
+ *
+ * Copyright 2012 - Iván Bravo
+ * http://accounts.infosmart.mx/
+**/
+
+.hint
+{
+	display: block;
+	color: gray;
+	font-size: 12px;
+}
+
+/* Cabecera */
+
+header
+{
+	padding: 8px 0;
+}
+
+header figure
+{
+	margin-right: 40px;
+}
+
+header figure img
+{
+	max-height: 40px;
+}
+
+header h3
+{
+	float: left;
+	margin-top: 8px;
+	font-family: "Open Sans", "Source Sans Pro", Arial;
+	font-size: 20px;
+	font-weight: 300;
+	-webkit-text-stroke: 0.1px;
+}
+
+/* Contenido */
+
+.content
+{
+	float: left;
+	width: 75%;
+}
+
+.content h3
+{
+	color: black;
+	font-family: "Museo", "Open Sans", "Source Sans Pro", Arial;
+	font-size: 30px;
+	font-weight: 300;
+	margin: 30px 0;
+	-webkit-text-stroke: 0.1px;
+}
+
+.content h4
+{
+	color: black;
+	font-family: "Open Sans", "Source Sans Pro", Arial;
+	font-size: 25px;
+	font-weight: 300;
+	margin-top: 30px;
+	-webkit-text-stroke: 0.1px;
+}
+
+/* Cabecera - Inicio */
+
+.hindex
+{
+	float: left;
+	width: 75%;
+}
+
+.hindex h1
+{
+	color: #424242;
+	font-family: "Museo", "Source Sans Pro", Arial;
+	font-size: 65px;
+	font-weight: 400;
+	line-height: 80px;
+	margin-top: 20px;
+	margin-bottom: 1px;
+}
+
+.hindex h3
+{
+	color: #5A5A5A;
+	font-family: "Open Sans", "Source Sans Pro", Arial;
+	font-size: 20px;
+	font-weight: 300;
+}
+
+.hindex .description
+{
+	font-family: "Open Sans", Arial;
+	font-weight: 300;
+	font-size: 15px;
+	float: left;
+	min-width: 390px;
+	width: 60%;
+}
+
+.hindex .description p
+{
+	margin: 38px 0 !important;
+}
+
+.hindex figure
+{
+	float: right;
+	text-align: center;
+	min-width: 250px;
+	width: 30%;
+}
+
+/* Contenido - Aplicaciones */
+
+.content .apps section
+{
+	border-bottom: 1px solid #D8D8D8;
+	padding: 20px 15px;
+	position: relative;
+	opacity: .9;
+}
+
+.content .apps section .logo
+{
+	position: absolute;
+	-webkit-filter: grayscale(0.5) blur(8px);
+	height: 110px;
+	right: 0;
+	opacity: .3;
+	transition: opacity .2s ease-in-out;
+}
+
+.content .apps section:hover .logo
+{
+	opacity: .8;
+}
+
+.content .apps section:hover
+{
+	opacity: 1;
+}
+
+.content .apps section:last-child
+{
+	border-bottom: 0;
+}
+
+.content .apps section .name
+{
+	color: black;
+	display: block;
+	font-family: "Source Sans Pro", Arial;
+	font-size: 20px;
+	font-weight: 400;
+	margin-bottom: 7px;
+}
+
+.content .apps section:hover .name
+{
+	color: #1D739E;
+}
+
+.content .apps section .desc
+{
+	font-family: "Source Sans Pro", Arial;
+	font-size: 15px;
+	font-weight: 300;
+}
+
+.content .apps section .keys
+{
+	margin-top: 20px;
+}
+
+.content .apps section .keys span
+{
+	display: block;
+	margin: 8px 0;
+	font-size: 11px;
+}
+
+.content .apps section .keys span strong
+{
+	display: inline-block;
+	width: 150px;
+}
+
+.content .apps section .keys .fresh
+{
+	color: #1D739E;
+	font-style: italic;
+}
+
+.content .apps section .keys span a
+{
+	margin-left: 40px;
+}
+
+/* Contenido - Creación de aplicación */
+
+.content .feature
+{
+	float: left;
+	margin: 10px;
+	min-width: 260px;
+	width: 30%;
+}
+
+.content .feature figure
+{
+	float: left;
+	margin-right: 10px;
+	width: 26%;
+}
+
+.content .feature figure img
+{
+	cursor: pointer;
+	width: 90%;
+}
+
+.content .feature figure input[type="file"]
+{
+	position: fixed;
+	top: -10000px;
+}
+
+.content .feature .description
+{
+	float: left;
+	width: 70%;
+}
+
+/* Contenido - Conexión en aplicaciones */
+
+.content .connect
+{
+	padding: 10px 0;
+	padding-left: 20px;
+	margin: 20px 0;
+	border: 2px solid transparent;
+}
+
+.content .connect.fb
+{
+	border-left-color: #44629F;
+}
+
+.content .connect.tw
+{
+	border-left-color: #24BAEA;
+}
+
+.content .connect.steam
+{
+	border-left-color: #555;
+}
+
+.content .connect .selection
+{
+	margin-top: 5px;
+}
+
+.content .connect .selection input
+{
+	float: left;
+	margin-right: 20px;
+}
+
+.content .connect .selection label
+{
+	float: left;
+	font-size: 17px;
+	font-weight: 300;
+	margin-bottom: 0 !important;
+}
+
+.content .connect .details
+{
+	display: none;
+}
+
+/* UTILS */
+
+.content .photo figure
+{
+	float: left;
+	margin-right: 15px;
+	width: 10%;
+}
+
+.content .photo figure img
+{
+	width: 99%;
+}
+
+.content .photo p
+{
+	float: left;
+	width: 85%;
+}
+
+/* Pie de página */
+
+footer
+{
+	background: #FAFAFA;
+	border-top: 1px solid #D8D8D8;
+	border-bottom: 1px solid #D8D8D8;
+	font-family: "Open Sans", Arial !important;
+	font-size: 12px;
+	font-weight: 300;
+	padding: 15px 0;
+	padding-bottom: 30px;
+}

@@ -1,0 +1,286 @@
+/**
+ * Estilo - Formularios
+ * InfoSmart. Todos los derechos reservados.
+ *
+ * Copyright 2012 - Iván Bravo
+ * http://accounts.infosmart.mx/
+**/
+
+/* Global */
+
+input:not([type="submit"]):not([type="checkbox"]).error
+{
+	background: rgba(221, 75, 57, .1) !important;
+	border-color: #DD4B39 !important;
+}
+
+.form input:not([type="checkbox"]):not([type="radio"])
+{
+	border: none !important;
+	border-bottom: 1px solid #CDCDCD !important;
+	color: black !important;
+	font-size: 18px !important;
+	padding: 6px 10px !important;
+	transition: background .3s ease-in-out;
+	width: 80% ;
+}
+
+.form input:not([type="checkbox"]):not([type="radio"]):hover,
+.form input:not([type="checkbox"]):not([type="radio"]):focus
+{
+	background: #FAFAFA;
+	border: none;
+	border-bottom: 1px solid #CDCDCD;
+}
+
+/* Formulario de inicio de sesión */
+
+.login-form
+{
+	margin-top: 50px;
+}
+
+.login-form section
+{
+	margin: 80px 0;
+}
+
+.login-form section:first-child
+{
+	margin-top: 0;
+}
+
+.login-form .inp
+{
+	float: left;
+	width: 50%;
+}
+
+.login-form .inp .data
+{
+	display: inline-block;
+}
+
+.login-form p label,
+.register-form p label
+{
+	font-family: "Source Sans Pro", "Open Sans", Arial;
+	font-size: 15px;
+}
+
+.login-form input[type="file"]
+{
+	border-color: transparent !important;
+}
+
+
+.login-form input:not([type="checkbox"]):not([type="radio"]),
+.login-form .inp .data,
+.login-form textarea
+{
+	border: 1px solid transparent !important;
+	border-bottom-color: #CDCDCD !important;
+	color: black !important;
+	font-size: 20px !important;
+	padding: 8px 10px !important;
+	transition: background .3s ease-in-out;
+	width: 80%;
+}
+
+.login-form .feature input:not([type="checkbox"]):not([type="radio"]),
+.login-form .feature textarea
+{
+	background: transparent;
+	width: 93%;
+}
+
+.login-form input:not([type="checkbox"]):not([type="radio"]):hover,
+.login-form input:not([type="checkbox"]):not([type="radio"]):focus,
+.login-form textarea:hover,
+.login-form textarea:focus
+{
+	background: #FAFAFA;
+	border-bottom-color: #BBBBBB;
+}
+
+.login-form textarea
+{
+	color: #424242;
+	font-size: 18px;
+	height: 100px;
+}
+
+/* Formulario de registro */
+
+.register-form input:not([type="checkbox"]):not([type="radio"])
+{
+	border: 1px solid transparent !important;
+	border-bottom-color: #CDCDCD !important;
+	color: black !important;
+	font-size: 15px !important;
+	padding: 5px 10px !important;
+	transition: background .3s ease-in-out;
+	width: 95%;
+}
+
+.register-form input:not([type="checkbox"]):not([type="radio"]):hover,
+.register-form input:not([type="checkbox"]):not([type="radio"]):focus
+{
+	background: #FAFAFA;
+	border-bottom-color: #BBBBBB;
+}
+
+.register-form .share,
+.form .share
+{
+	margin-right: 8px;
+	width: 41% !important;
+}
+
+.register-form .share-3,
+.form .share-3
+{
+	margin-right: 5px;
+	width: 26% !important;
+}
+
+.register-form div[role~="menu"].share-3,
+.form div[role~="menu"].share-3
+{
+	display: inline-block;
+	width: 123px;
+}
+
+.register-form .bx[role~="button"],
+.form .bx[role~="button"]
+{
+	padding: 3px 20px;
+}
+
+.register-form p
+{
+	height: 130px;
+}
+
+/* Formulario PRO */
+
+.in_form section
+{
+	margin: 0;
+}
+
+.in_form section:last-child
+{
+	border-bottom: 0;
+}
+
+.in_form section:hover
+{
+	background: #FAFAFA;
+}
+
+.in_form .c1
+{
+	border-right: 1px dotted #D8D8D8;
+	float: left;
+	text-align: center;
+	height: 60px;
+	width: 27%;
+}
+
+.in_form .c1 input
+{
+	margin-top: 25px;
+}
+
+.in_form .c1 input:not([type="checkbox"]):not([type="radio"])
+{
+	margin-top: 15px;
+	width: 80%;
+}
+
+.in_form .c1 div[role~="menu"]
+{
+	margin: 0 20px;
+	margin-top: 15px;
+}
+
+.in_form .c2
+{
+	height: 60px;
+	float: right;
+	width: 70%;
+}
+
+.in_form .c2 p
+{
+	margin-top: 8px;
+	margin-bottom: 0;
+}
+
+.in_form .c2 .h
+{
+	font-size: 10px;
+}
+
+/* Formulario de recuperación */
+
+.forgot-form input:not([type="checkbox"]):not([type="radio"])
+{
+	width: 400px;
+}
+
+.forgot-form.radio p
+{
+	font-family: "Droid Sans", Arial;
+}
+
+.forgot-form.radio p input[type="radio"]
+{
+	margin-right: 15px;
+}
+
+/* Formulario de caracteristicas de la App */
+
+.feature input:not([type="checkbox"]):not([type="radio"])
+{
+	font-size: 15px !important;
+	padding: 3px 10px !important;
+}
+
+.feature textarea
+{
+	font-size: 15px !important;
+	padding: 3px 10px !important;
+	padding-top: 6px !important;
+}
+
+/* Formularios */
+
+.st1-form input:not([type="checkbox"]):not([type="radio"]),
+.st1-form textarea
+{
+	border: 1px solid transparent !important;
+	border-bottom-color: #CDCDCD !important;
+	color: black !important;
+	font-size: 15px !important;
+	padding: 5px 8px !important;
+	transition: background .3s ease-in-out;
+	width: 40%;
+}
+
+.st1-form input:not([type="checkbox"]):not([type="radio"]):hover,
+.st1-form input:not([type="checkbox"]):not([type="radio"]):focus,
+.st1-form textarea:hover,
+.st1-form textarea:focus
+{
+	background: #FAFAFA;
+	border-bottom-color: #BBBBBB;
+}
+
+/* UTILS */
+
+.sep-form p
+{
+	margin: 25px 0;
+}
